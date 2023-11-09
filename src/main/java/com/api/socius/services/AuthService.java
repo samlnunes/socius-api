@@ -34,6 +34,7 @@ public class AuthService implements UserDetailsService {
             Algorithm algorithm = Algorithm.HMAC256(secret);
             String token = JWT.create()
                     .withIssuer("socius-api")
+                    .withSubject(userModel.getUsername())
                     .withExpiresAt(genExpirationDate())
                     .sign(algorithm);
             return token;
